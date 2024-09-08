@@ -10,14 +10,20 @@ class StartScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // This opacity method is performance intensive
-          Opacity(
-            opacity: 0.5,
-            child: Image.asset(
-              'assets/images/quiz-logo.png',
-              width: 300,
-            ),
+          Image.asset(
+            'assets/images/quiz-logo.png',
+            width: 400,
+            color: Color.fromARGB(237, 236, 232, 232),
           ),
+
+          // This opacity method is performance intensive
+          // Opacity(
+          //   opacity: 0.5,
+          //   child: Image.asset(
+          //     'assets/images/quiz-logo.png',
+          //     width: 300,
+          //   ),
+          // ),
           const SizedBox(height: 80),
           const Text(
             'Learn the Flutter the Fun Way!',
