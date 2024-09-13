@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -13,7 +12,7 @@ class StartScreen extends StatelessWidget {
           Image.asset(
             'assets/images/quiz-logo.png',
             width: 400,
-            color: Color.fromARGB(237, 236, 232, 232),
+            color: const Color.fromARGB(150, 236, 232, 232),
           ),
 
           // This opacity method is performance intensive
@@ -37,7 +36,9 @@ class StartScreen extends StatelessWidget {
           ),
           OutlinedButton.icon(
             //if we use clickable icon
-            onPressed: () {},
+            onPressed: () {
+              
+            },
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.white,
             ),
