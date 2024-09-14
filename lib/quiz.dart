@@ -56,6 +56,17 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(context) {
+    /* var screenWidget = activeScreen == 'start-screen'  //this is a turnery expression
+                 ? StartScreen(switchScreen)
+                 : const QuestionsScreen(); */
+    
+    // another way to write above code
+    Widget screenWidget = StartScreen(switchScreen);
+
+    if(activeScreen == 'questions-screen'){
+      screenWidget = const  QuestionsScreen();
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -68,11 +79,10 @@ class _QuizState extends State<Quiz> {
           //-------------------------method -1----------------------------------------------
           // child: activeScreen,
           //-------------------------method -1----------------------------------------------
-          
+
           //------another method to use activeScreen(method-2)
-          child: activeScreen == 'start-screen'
-              ? StartScreen(switchScreen)
-              : const QuestionsScreen(),
+          child: screenWidget,
+          //-------------------------method -2----------------------------------------------
         ),
       ),
     );
