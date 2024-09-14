@@ -16,8 +16,18 @@ class Quiz extends StatefulWidget{
 class _QuizState extends State<Quiz>{ //private class start with "_" and with class name and "State"
   // State is a generic class that takes the StatefulWidget as a type argument
   
-  Widget activeScreen = const StartScreen(); //activeScreen is a variable that holds the StartScreen widget
+ // Widget activeScreen = const StartScreen(switchScreen);
+  //activeScreen is a variable that holds the StartScreen widget
+  // (switchScreen) passess a pointer as a value to StartScreen
   // we can't use var as the type because we need more general type. because we assign a new widget to it later
+
+  Widget? activeScreen; // we can use "?" to make it nullable (means can contain widget or null)
+
+  @override //for additional initialization
+  void initState() {
+    activeScreen = StartScreen(switchScreen);
+    super.initState(); //call the parent class's initState method
+  }
 
   void switchScreen(){
     setState((){
