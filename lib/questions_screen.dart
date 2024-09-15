@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart ';
+import 'package:starting_screen/answer_button.dart';
 
 class QuestionsScreen extends StatefulWidget{
   const QuestionsScreen({super.key});
@@ -17,26 +18,26 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        const Text('The question....'),
+        const Text(
+          'The question....', 
+          style: TextStyle(
+            color: Colors.white
+          ),
+        ),
         const SizedBox(height: 20,),
-        ElevatedButton(
-          onPressed: (){}, 
-          child: const Text('Answer 1'),
+
+        /* following we added the arguments to named argumets
+        for named argumets order is not important, 
+        just immportant that we have set all required argumets
+        ane need to target argumets with their name */
+        AnswerButton(
+          onTap: (){}, 
+          answerText: 'Answer 1'
         ),
-         ElevatedButton(
-          onPressed: (){}, 
-          child: const Text('Answer 2'),
-        ),
-         ElevatedButton(
-          onPressed: (){}, 
-          child: const Text('Answer 3'),
-        ),
-         ElevatedButton(
-          onPressed: (){
-            print('Answer 4');
-          }, 
-          child: const Text('Answer 4'),
-        )
+        AnswerButton(
+          onTap: (){}, 
+          answerText: 'Answer 2'
+        ), 
       ],),
     );
   }
