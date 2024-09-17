@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:starting_screen/questions_screen.dart';
 import 'package:starting_screen/start_screen.dart';
+import 'package:starting_screen/data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -13,6 +14,8 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  List<String> selectedAnswers = []; // store the selected answers
+
   /* private class start with "_" and with class name and "State"
    State is a generic class that takes the StatefulWidget as a type argument */
 
@@ -51,7 +54,16 @@ class _QuizState extends State<Quiz> {
 
   //--------------------------------------------------------------------------------
 
-  
+  void chooseAnswer(String answer){
+    selectedAnswers.add(answer);
+
+    if(selectedAnswers.length == questions.length){
+      setState(() {
+        activeScreen = 'start-screen';
+        selectedAnswers = [];
+      });
+    }
+  }
 
   @override
   Widget build(context) {
@@ -63,7 +75,7 @@ class _QuizState extends State<Quiz> {
     Widget screenWidget = StartScreen(switchScreen);
 
     if(activeScreen == 'questions-screen'){
-      screenWidget = const  QuestionsScreen();
+      screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer,);
     }
 
     return MaterialApp(
