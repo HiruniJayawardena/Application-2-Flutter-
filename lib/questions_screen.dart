@@ -20,6 +20,7 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
       width: double.infinity, // take the full width of the screen
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
         Text(
           currentQuestion.text, 
@@ -29,17 +30,20 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
         ),
         const SizedBox(height: 20,),
 
-        ...currentQuestion.answers.map((answer){ 
           // map is used to convert list of answers to list of widgets
           // ... is the spread operator
-          return AnswerButton(answerText: answer, onTap: (){});
+        ...currentQuestion.answers.map((answer){  // answer buttons added to the list as individual elements 
+          return AnswerButton(
+            answerText: answer, 
+            onTap: (){}
+            );
         }),
 
         /* following we added the arguments to named argumets
         for named argumets order is not important, 
         just immportant that we have set all required argumets
         ane need to target argumets with their name */
-        AnswerButton(
+        /*AnswerButton(
           onTap: (){}, 
           answerText: currentQuestion.answers[0],
         ),
@@ -54,7 +58,7 @@ class _QuestionsScreenState extends State<QuestionsScreen>{
         AnswerButton(
           onTap: (){}, 
           answerText: currentQuestion.answers[3],
-        ), 
+        ), */
       ],),
     );
   }
