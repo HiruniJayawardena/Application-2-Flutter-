@@ -1,6 +1,7 @@
 // This is a stateless widget because it doesn't need to manage any internal state
 
 import 'package:flutter/material.dart';
+import 'package:starting_screen/data/questions.dart';
 
 class ResultsScreen extends StatelessWidget{
   const ResultsScreen({super.key, required this.chosenAnswers});
@@ -9,6 +10,17 @@ class ResultsScreen extends StatelessWidget{
 
   List<Map<String, Object>> getSummeryData(){
     final List<Map<String, Object>> summery = [];
+
+    for(var i = 0; i < chosenAnswers.length; i++){
+      summery.add(
+        {
+          'question_index' : i,
+          'question' : questions[i].text,
+          'correct_answer' : questions[i].answers[0],
+          'user_answer' : chosenAnswers[i],
+        },
+      );
+    }
 
     return summery;
   }
