@@ -41,14 +41,24 @@ class ResultsScreen extends StatelessWidget{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!'),
+            Text('You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),),
             const SizedBox(height: 30,),
             // QuestionsSummary(getSummaryData()), // this stops using the same function twice inside the same build method
             QuestionsSummary(summaryData),
             const SizedBox(height: 30,),
-            TextButton(
+            TextButton.icon(
               onPressed:(){}, 
-              child: const Text('Restart Quiz!'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+              ),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Restart Quiz',),
             ),
           ],
         ),
