@@ -2,13 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:starting_screen/data/questions.dart';
+import 'package:starting_screen/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget{
   const ResultsScreen({super.key, required this.chosenAnswers});
 
   final List<String> chosenAnswers;
 
-  List<Map<String, Object>> getSummeryData(){
+  List<Map<String, Object>> getSummaryData(){
     final List<Map<String, Object>> summery = [];
 
     for(var i = 0; i < chosenAnswers.length; i++){
@@ -27,6 +28,12 @@ class ResultsScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final numCorrectQuestions = summaryData.where((data){ //where gives a new list of elements that filtered
+      return data['user_answer'] == data['correct_answer'];
+    }).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -34,9 +41,10 @@ class ResultsScreen extends StatelessWidget{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('You answered x out of y questions correctly!'),
+            Text('You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!'),
             const SizedBox(height: 30,),
-            const Text('List of answers and questions...'),
+            // QuestionsSummary(getSummaryData()), // this stops using the same function twice inside the same build method
+            QuestionsSummary(summaryData),
             const SizedBox(height: 30,),
             TextButton(
               onPressed:(){}, 
