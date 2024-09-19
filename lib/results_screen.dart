@@ -1,13 +1,16 @@
 // This is a stateless widget because it doesn't need to manage any internal state
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:starting_screen/data/questions.dart';
-import 'package:starting_screen/questions_summary.dart';
+import 'package:starting_screen/questiions_summary/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget{
-  const ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen({super.key, required this.chosenAnswers, required this.onRestart});
 
   final List<String> chosenAnswers;
+
+  final void Function() onRestart;
 
   List<Map<String, Object>> getSummaryData(){
     final List<Map<String, Object>> summery = [];
@@ -42,18 +45,18 @@ class ResultsScreen extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
+            style: GoogleFonts.lato(
+              color: const Color.fromARGB(255, 230, 200, 253),
               fontSize: 20,
               fontWeight: FontWeight.bold,
-            ),),
+            ),
+            ),
             const SizedBox(height: 30,),
             // QuestionsSummary(getSummaryData()), // this stops using the same function twice inside the same build method
             QuestionsSummary(summaryData),
             const SizedBox(height: 30,),
             TextButton.icon(
-              onPressed:(){}, 
+              onPressed: onRestart, 
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
